@@ -1,0 +1,15 @@
+# Local prototype app files that are not part of the public landing deployment
+/assets/reports/
+/assets/templates/
+/assets/workbooks/
+/index.html
+/server.js
+/src/
+/styles.css
+/landing.html
+/landing.css
+/landing.js
+
+# macOS / local noise
+.DS_Store
+node_modules/

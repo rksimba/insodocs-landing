@@ -1,0 +1,17 @@
+services:
+  - type: static_site
+    name: insodocs-landing
+    branch: main
+    buildCommand: ""
+    staticPublishPath: landing-site
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
