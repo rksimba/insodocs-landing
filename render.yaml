@@ -1,9 +1,21 @@
 services:
-  - type: static_site
+  - type: web
     name: insodocs-landing
+    runtime: node
     branch: main
     buildCommand: ""
-    staticPublishPath: landing-site
+    startCommand: npm start
+    envVars:
+      - key: STATIC_ROOT
+        value: landing-site
+      - key: AIRTABLE_BASE_ID
+        value: appeTRS3rtFqXPJHY
+      - key: AIRTABLE_WAITLIST_TABLE_ID
+        value: tblqOjPaEku06GHA7
+      - key: ALLOWED_ORIGIN
+        value: https://insodocs.app
+      - key: AIRTABLE_API_KEY
+        sync: false
     pullRequestPreviewsEnabled: false
     headers:
       - path: /*

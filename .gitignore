@@ -4,6 +4,7 @@
 /assets/workbooks/
 /index.html
 /server.js
+!/server.js
 /src/
 /styles.css
 /landing.html
