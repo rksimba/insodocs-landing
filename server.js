@@ -19,10 +19,25 @@ async function readBody(request) {
 }
 
 function json(response, status, body) {
+  const origin = response.req?.headers?.origin;
+  const configuredOrigins = (process.env.ALLOWED_ORIGIN || "")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+  const allowedOrigins = [
+    "https://insodocs.app",
+    "https://rksimba.github.io",
+    "https://insodocs-landing.onrender.com",
+    "null",
+    ...configuredOrigins,
+  ];
+  const allowOrigin = origin && allowedOrigins.includes(origin) ? origin : allowedOrigins[0] || "*";
+
   response.writeHead(status, {
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Origin": process.env.ALLOWED_ORIGIN || "*",
+    "Access-Control-Allow-Origin": allowOrigin,
+    "Vary": "Origin",
     "Content-Type": "application/json; charset=utf-8",
   });
   response.end(JSON.stringify(body));
